@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Planenga_ua;
+use App\PlanEngagement;
 use App\Repositories\Repository;
 use \Validator;
 
-class planenga_uaController extends Controller
+class PlanEngagementController extends Controller
 {
     
     protected $model;
 
-    public function __construct(Planenga_ua $model){
+    public function __construct(PlanEngagement $model){
         $this->model = $model;
     }
 
     public function index()
     {
-        $list_planenga_ua = Planenga_ua::all();
-        return response()->json($list_planenga_ua ,200);
+        $list_plan = PlanEngagement::all();
+        return response()->json($list_plan ,200);
     }
 
     
@@ -31,7 +31,7 @@ class planenga_uaController extends Controller
     public function store(Request $request)
     {
         
-        $create_planenga_ua = Planenga_ua::create([
+        $create_plan = PlanEngagement::create([
               'section_id'=>$request->section_id,
               'programme_id'=>$request->programme_id,
               'action_id'=>$request->action_id,
@@ -56,37 +56,42 @@ class planenga_uaController extends Controller
               'annee'=>$request->annee,
         ]);
 
-        if($create_planenga_ua){
-            return respinse()->json($create_planenga_ua, 200);
+        if($create_plan){
+            return response()->json($create_plan, 201);
         }else{
-            return response()->json('un probleme est survenu');
+            return response()->json('un probleme est survenu',411);
         }
     }
 
     
     public function show($id)
     {
-        $list_planby_id = Planenga_ua::where('id',$id)->first();
+        $list_plan = PlanEngagement::where('id',$id)->first();
 
-        if($list_planby_id){
-            return response()->json($list_planby_id,200);
+        if($list_plan){
+            return response()->json($list_plan,201);
         }else{
-            return response()->json('Identifiant introuvable');
+            return response()->json('Identifiant introuvable',411);
         }
     }
 
    
     public function edit($id)
     {
-        $edit_planenga = Planenga_ua::find($id);
+        $edit_plan = PlanEngagement::find($id);
        
-        return response()->json($edit_planenga, 200);
+        if($sedit_plan){
+            return response()->json($edit_plan, 201);
+        }else{
+            return response()->json('Identifiant introuvable', 411);
+        }
+        
     }
 
     
     public function update(Request $request, $id)
     {
-        $update_plan_enga = Planenga_ua::where('id',$id)->update([
+        $update_plan = PlanEngagement::where('id',$id)->update([
             'section_id'=>$request->section_id,
             'programme_id'=>$request->programme_id,
             'action_id'=>$request->action_id,
@@ -111,10 +116,10 @@ class planenga_uaController extends Controller
             'annee'=>$request->annee
         ]);
 
-        if($update_plan_enga){
-            return response()->json($update_plan_enga, 200);
+        if($update_plan){
+            return response()->json($update_plan, 201);
         }else{
-            return response()->json('un probleme est survenu');
+            return response()->json('un probleme est survenu',411);
         }
     
     }
@@ -122,12 +127,12 @@ class planenga_uaController extends Controller
     
     public function destroy($id)
     {
-            $del_plan_anga = Planenga_ua::where('id',$id)->destroy();
+            $delete_plan = PlanEngagement::where('id',$id)->delete();
 
-            if($del_plan_anga){
-                return reponse()->json('supprimé avec succès !',200);
+            if($delete_plan){
+                return response()->json('supprimé avec succès !',201);
             }else{
-                return reponse()->json('Identifiant introuvable');
+                return response()->json('Identifiant introuvable',411);
             }
      }
 }

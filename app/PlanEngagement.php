@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Planenga_ua extends Model
+class PlanEngagement extends Model
 {
-    protected $table ='planenga_uas';
+    protected $table ='PlanEngagements';
 
     public $timestamps = false;
 

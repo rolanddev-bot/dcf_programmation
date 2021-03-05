@@ -20,9 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //********** route pour le plan d'engagement par UA *************************//
 
-Route::get("Planengaua","planenga_uaController@index");
-Route::post("Planengaua","planenga_uaController@store");
-Route::get("Planengaua/{id}","planenga_uaController@show");
-Route::get("Planengaua/{id}","planenga_uaController@edit");
-Route::delete("Planengaua/{id}","planenga_uaController@destroy");
-Route::put("Planengaua/{id}","planenga_uaController@update");
+Route::get("PlanEngagement","PlanEngagementController@index");
+Route::post("PlanEngagement","PlanEngagementController@store");
+Route::get("PlanEngagement/{id}","PlanEngagementController@show");
+Route::get("PlanEngagement/edit/{id}","PlanEngagementController@edit");
+Route::delete("PlanEngagement/{id}","PlanEngagementController@destroy");
+Route::put("PlanEngagement/{id}","PlanEngagementController@update");
